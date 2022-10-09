@@ -24,10 +24,11 @@ public class JWTAuthenticarFilter extends UsernamePasswordAuthenticationFilter {
 
     private final AuthenticationManager authenticationManager;
 
-    private Injetaveis injetaveis;
+    private final Injetaveis injetaveis;
 
     public JWTAuthenticarFilter(AuthenticationManager authenticationManager) {
         this.authenticationManager = authenticationManager;
+        this.injetaveis = new Injetaveis();
     }
 
     @Override
@@ -43,12 +44,12 @@ public class JWTAuthenticarFilter extends UsernamePasswordAuthenticationFilter {
     }
 
     @Override
-    protected void successfulAuthentication(HttpServletRequest request, HttpServletResponse response, FilterChain chain, Authentication authResult) throws IOException, ServletException {
+    protected void successfulAuthentication(HttpServletRequest request, HttpServletResponse response, FilterChain chain, Authentication authResult) throws IOException {
         DetalheUsuarioData usuarioData = (DetalheUsuarioData) authResult.getPrincipal();
         String token = JWT.create()
                 .withSubject(usuarioData.getUsername())
-                .withExpiresAt(new Date(System.currentTimeMillis()+injetaveis.TOKEN_EXPIRACAO()))
-                .sign(Algorithm.HMAC512(injetaveis.TOKEN_SENHA()));
+                .withExpiresAt(new Date(System.currentTimeMillis()+injetaveis.getTempo()))
+                .sign(Algorithm.HMAC512(injetaveis.getSenha()));
         response.getWriter().write(token);
         response.getWriter().flush();
     }

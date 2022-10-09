@@ -35,11 +35,13 @@ public class JWTConfiguracao extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
-               .csrf().disable() // HABILITAR QUANDO FOR PARA PRODUÇÃO PARA EVITAR ATAQUES
-               .authorizeRequests()
-               .antMatchers(HttpMethod.POST,"/login").permitAll()
-               .anyRequest().authenticated()
-               .and()
+                .csrf().disable()   // HABILITAR QUANDO FOR PARA PRODUÇÃO PARA EVITAR ATAQUES
+                .authorizeRequests()
+                .antMatchers(HttpMethod.POST,"/api/usuario/salvar").permitAll()
+                .and()
+                .authorizeRequests()
+                .antMatchers(HttpMethod.POST,"/login").permitAll().anyRequest().authenticated()
+                .and()
                 .addFilter(new JWTAuthenticarFilter(authenticationManager()))
                 .addFilter(new JWTValidarFilter(authenticationManager()))
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);

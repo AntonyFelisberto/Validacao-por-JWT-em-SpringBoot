@@ -7,31 +7,46 @@ import javax.annotation.PostConstruct;
 
 @Component
 public class Injetaveis {
+
     @Value("${app.tempo}")
-    private Integer TOKEN_EXPIRACAO;
+    private int TOKEN_EXPIRACAO;
+
     @Value("${app.senha}")
     private String TOKEN_SENHA;
 
-    @Value("app.header.atributo")
-    private String HEADER_ATRIBUTO;
-
-    @Value("app.atributo.prefixo")
+    @Value("${app.atributo.prefixo}")
     private String ATRIBUTO_PREFIXO;
 
-    public Integer TOKEN_EXPIRACAO(){
-        return TOKEN_EXPIRACAO;
+    @Value("${app.header.atributo}")
+    private String HEADER_ATRIBUTO;
+
+    private static String senha;
+    private static String header;
+    private static String atributo;
+    private static int tempo;
+
+    @PostConstruct
+    public void iniciarConfiguracao() {
+        this.senha = TOKEN_SENHA;
+        this.atributo = ATRIBUTO_PREFIXO;
+        this.tempo = TOKEN_EXPIRACAO;
+        this.header = HEADER_ATRIBUTO;
     }
 
-    public String TOKEN_SENHA(){
-        return TOKEN_SENHA;
+    public String getSenha() {
+        return senha;
     }
 
-    public String HEADER_ATRIBUTO(){
-        return HEADER_ATRIBUTO;
+    public String getAtributo() {
+        return atributo;
     }
 
-    public String ATRIBUTO_PREFIXO(){
-        return ATRIBUTO_PREFIXO;
+    public int getTempo() {
+        return tempo;
+    }
+
+    public String getHeader() {
+        return header;
     }
 
 }
