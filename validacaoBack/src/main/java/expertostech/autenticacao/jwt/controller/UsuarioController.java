@@ -37,7 +37,7 @@ public class UsuarioController {
     public ResponseEntity<Boolean> validarSenha(@RequestParam String login,
                                                 @RequestParam String password) {
 
-        Optional<UsuarioModel> optUsuario = repository.findByLogin(login);
+        Optional<UsuarioModel> optUsuario = repository.findByUserName(login);
         if (optUsuario.isEmpty()) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(false);
         }

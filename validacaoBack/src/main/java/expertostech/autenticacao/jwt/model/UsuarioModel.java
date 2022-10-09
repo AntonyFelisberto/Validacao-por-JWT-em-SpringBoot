@@ -17,7 +17,7 @@ public class UsuarioModel {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     @Column(unique = true)
-    private String login;
+    private String userName;
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private String password;
 

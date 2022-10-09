@@ -28,7 +28,7 @@ public class DetalheUsuarioData implements UserDetails {
 
     @Override
     public String getUsername() {
-        return usuarioModelOptional.orElse(new UsuarioModel()).getLogin();
+        return usuarioModelOptional.orElse(new UsuarioModel()).getUserName();
     }
 
     @Override
@@ -50,4 +50,5 @@ public class DetalheUsuarioData implements UserDetails {
     public boolean isEnabled() {
         return true;
     }
+
 }
