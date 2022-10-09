@@ -6,13 +6,11 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import expertostech.autenticacao.jwt.configuracoes.Injetaveis;
 import expertostech.autenticacao.jwt.data.DetalheUsuarioData;
 import expertostech.autenticacao.jwt.model.UsuarioModel;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
-import org.springframework.stereotype.Component;
 
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
@@ -22,13 +20,13 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
 
-public class JWTAuthenticaticarFilter extends UsernamePasswordAuthenticationFilter {
+public class JWTAuthenticarFilter extends UsernamePasswordAuthenticationFilter {
 
     private final AuthenticationManager authenticationManager;
 
     private Injetaveis injetaveis;
 
-    public JWTAuthenticaticarFilter(AuthenticationManager authenticationManager) {
+    public JWTAuthenticarFilter(AuthenticationManager authenticationManager) {
         this.authenticationManager = authenticationManager;
     }
 
